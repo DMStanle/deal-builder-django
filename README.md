@@ -6,7 +6,8 @@ The goal of the project was to demonstrate basic Django concepts including views
 
 ## Instructions for Build and Use
 
-[Software Demo](Put_Your_Video_Link_Here)
+https://youtu.be/gdgLiHt9eA4
+
 
 Steps to build and/or run the software:
 
