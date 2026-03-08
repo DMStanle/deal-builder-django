@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deal Builder</title>
+    <link rel="stylesheet" href="{% static 'deals/style.css' %}">
+</head>
+<body>
+    <div class="page">
+        <h1>Deal Builder</h1>
+
+        <form method="post" class="card">
+            {% csrf_token %}
+
+            <label for="product">Product</label>
+            <select name="product" id="product">
+                <option value="">Select a product</option>
+                {% for key, product in products.items %}
+                    <option value="{{ key }}" {% if selected_product == key %}selected{% endif %}>
+                        {{ product.name }} - ${{ product.price }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="deal">Deal</label>
+            <select name="deal" id="deal">
+                <option value="">Select a deal</option>
+                {% for key, label in deals.items %}
+                    <option value="{{ key }}" {% if selected_deal == key %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" id="quantity" min="1" value="{{ quantity }}">
+
+            <button type="submit">Build Deal</button>
+        </form>
+
+        <div class="card">
+            <h2>Total</h2>
+            <p class="total">{{ total }}</p>
+
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+
+            <h2>Summary</h2>
+            <p>{{ summary }}</p>
+        </div>
+    </div>
+</body>
+</html>
